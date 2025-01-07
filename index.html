@@ -12,6 +12,9 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <!-- Custom CSS -->
     <style>
         :root {
@@ -471,6 +474,95 @@
             transform: rotate(-15deg);
         }
 
+        .brands-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.brands-scroll {
+    display: flex;
+    animation: scroll 20s linear infinite;
+}
+
+.brand-card {
+    flex: 0 0 auto;
+    width: 200px;
+    margin: 0 20px;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.brand-card:hover {
+    transform: translateY(-5px);
+}
+
+.brand-card img {
+    max-height: 100px;
+    width: auto;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@media (max-width: 768px) {
+    .brand-card {
+        width: 250px;
+        margin: 10px 10px;
+    }
+    
+    .brand-card img {
+        max-height: 80px;
+    }
+}
+
+
+
+#sticky-header{
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: white;
+    z-index: 10000;
+    padding: 10px 0;
+    margin-top: 0;
+}
+
+.top-bar {
+    position: relative;
+    z-index: 10001;
+    font-size: 15px;
+    background-color: #333 !important;
+    padding: 8px 0;
+}
+
+.top-bar .container-fluid {
+    position: relative;
+}
+
+.top-bar .email-info {
+    position: absolute;
+    left: 71%;
+    transform: translateX(-50%);
+}
+
+@media (max-width: 768px) {
+    .top-bar .email-info {
+        position: static;
+        transform: none;
+        gap: 3px;
+    }
+}
+
         /* Responsive Adjustments */
         @media (max-width: 768px) {
             .hero-content h1 {
@@ -505,32 +597,53 @@
                 display: none;
             }
         }
+      
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img width="80px" height="70px" src="images/ABM Logo-1.jpg" alt="ARAFA Logo">
+  <!-- Top Bar Section -->
+  <div class="top-bar bg-dark text-white py-3">
+    <div class="container-fluid px-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="contact-info">
+                <i class="fas fa-phone me-1"></i>
+                <a href="tel:+971568847406" class="text-white text-decoration-none">Call Us On +971-568847406</a>
+            </div>
+            <div class="contact-info email-info">
+                <i class="fas fa-envelope me-1"></i>
+                <a href="mailto:info@arafa.com" class="text-white text-decoration-none" style="font-size: 17px;">info@arafa.com</a>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="z-index: 10000;" id="sticky-header">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="padding-left: 50px;">
+                <img width="80px" height="70px" src="images/ABM_Logo-1-removebg-preview.png" alt="ARAFA Logo">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                <ul class="navbar-nav">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">About Us</a>
+                        <a class="nav-link active" href="#categories">Categories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#categories">Categories</a>
+                        <a class="nav-link active" href="#brands">Brands</a>
                     </li>
-                  
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact Us</a>
+                        <a class="nav-link active" href="#about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#contact">Contact Us</a>
+                    </li>
+                    <li class="nav-item ms-lg-4">
+                        <a class="btn btn-primary" href="#contact" style="border-radius: 25px;">Request Quote</a>
                     </li>
                 </ul>
             </div>
@@ -685,6 +798,48 @@
     </section>
 
     <!-- Products Section -->
+
+    <section id="brands" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Our Brands</h2>
+            <div class="brands-container">
+                <div class="brands-scroll">
+                    <div class="brand-card text-center">
+                        <img src="https://img.freepik.com/free-vector/excavator-construction-logo-concept_23-2148661659.jpg" alt="Brand 1" class="img-fluid mb-3">
+                        <h4>Brand Name 1</h4>
+                    </div>
+                    <div class="brand-card text-center">
+                        <img src="https://img.freepik.com/free-vector/colorful-letter-m-icon-logo-design_474888-2980.jpg" alt="Brand 2" class="img-fluid mb-3">
+                        <h4>Brand Name 2</h4>
+                    </div>
+                    <div class="brand-card text-center">
+                        <img src="https://img.freepik.com/free-vector/flat-design-construction-company-logo_23-2150051906.jpg" alt="Brand 3" class="img-fluid mb-3">
+                        <h4>Brand Name 3</h4>
+                    </div>
+                    <div class="brand-card text-center">
+                        <img src="https://img.freepik.com/free-vector/bulb-gradient-colorful-logo_343694-1442.jpg" alt="Brand 4" class="img-fluid mb-3">
+                        <h4>Brand Name 4</h4>
+                    </div>
+                    <div class="brand-card text-center">
+                        <img src="https://img.freepik.com/free-vector/excavator-construction-logo-concept_23-2148661659.jpg" alt="Brand 1" class="img-fluid mb-3">
+                        <h4>Brand Name 1</h4>
+                    </div>
+                    <div class="brand-card text-center">
+                        <img src="https://img.freepik.com/free-vector/colorful-letter-m-icon-logo-design_474888-2980.jpg" alt="Brand 2" class="img-fluid mb-3">
+                        <h4>Brand Name 2</h4>
+                    </div>
+                    <div class="brand-card text-center">
+                        <img src="https://img.freepik.com/free-vector/flat-design-construction-company-logo_23-2150051906.jpg" alt="Brand 3" class="img-fluid mb-3">
+                        <h4>Brand Name 3</h4>
+                    </div>
+                    <div class="brand-card text-center">
+                        <img src="https://img.freepik.com/free-vector/bulb-gradient-colorful-logo_343694-1442.jpg" alt="Brand 4" class="img-fluid mb-3">
+                        <h4>Brand Name 4</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
 
     <!-- Contact Section -->
@@ -819,6 +974,74 @@
                 });
             }
         });
+         window.addEventListener('scroll', () => {
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            
+            if (pageYOffset >= (sectionTop - 150)) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').substring(1) === current) {
+                link.classList.add('active');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+    const brandsScroll = document.querySelector('.brands-scroll');
+    const brandCards = brandsScroll.querySelectorAll('.brand-card');
+    
+    // Clone the brand cards and append them to create a seamless loop
+    brandCards.forEach(card => {
+        const clone = card.cloneNode(true);
+        brandsScroll.appendChild(clone);
+    });
+
+    // Calculate the total width of all brand cards
+    const totalWidth = Array.from(brandCards).reduce((width, card) => {
+        return width + card.offsetWidth + parseInt(getComputedStyle(card).marginLeft) + parseInt(getComputedStyle(card).marginRight);
+    }, 0);
+
+    // Set the animation duration based on the total width
+    const animationDuration = totalWidth / 50; // Adjust the divisor to change the speed
+    brandsScroll.style.animationDuration = `${animationDuration}s`;
+
+    // Pause animation on hover
+    brandsScroll.addEventListener('mouseenter', () => {
+        brandsScroll.style.animationPlayState = 'paused';
+    });
+
+    brandsScroll.addEventListener('mouseleave', () => {
+        brandsScroll.style.animationPlayState = 'running';
+    });
+
+    // Check if we need to reset the animation
+    function checkPosition() {
+        const firstCard = brandCards[0];
+        const firstCardRect = firstCard.getBoundingClientRect();
+        
+        if (firstCardRect.right < 0) {
+            // Move the first card to the end
+            brandsScroll.appendChild(firstCard);
+            // Reset the animation
+            brandsScroll.style.animation = 'none';
+            brandsScroll.offsetHeight; // Trigger reflow
+            brandsScroll.style.animation = `scroll ${animationDuration}s linear infinite`;
+        }
+    }
+
+    // Check position periodically
+    setInterval(checkPosition, 1000);
+});
+
+
+    });
     </script>
 </body>
 </html>
