@@ -1,0 +1,195 @@
+:root {
+    --primary-gradient: linear-gradient(90deg, #0f172a, #1e293b);
+    --hover-gradient: linear-gradient(90deg, #1e40af, #3b82f6);
+    --accent-color: #38bdf8;
+    --glow-color: rgba(56, 189, 248, 0.6);
+    --text-color: #f8fafc;
+    --icon-color: #38bdf8;
+    --animation-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+}
+
+.top-bar {
+    background: var(--primary-gradient);
+    color: var(--text-color);
+    padding: 12px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    animation: ambientGlow 4s infinite alternate;
+}
+
+/* Lighting effect elements */
+.top-bar::before, .top-bar::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+}
+
+/* Moving light beam */
+.top-bar::before {
+    width: 150px;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.2),
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    top: 0;
+    left: -150px;
+    transform: skewX(-20deg);
+    animation: lightBeam 6s infinite;
+}
+
+/* Top edge glow */
+.top-bar::after {
+    height: 2px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: var(--accent-color);
+    box-shadow: 
+        0 0 10px 1px var(--glow-color),
+        0 0 20px 2px var(--glow-color);
+    opacity: 0.8;
+}
+
+@keyframes lightBeam {
+    0% { left: -150px; }
+    100% { left: 100%; }
+}
+
+@keyframes ambientGlow {
+    0% { 
+        box-shadow: 
+            0 4px 12px rgba(0, 0, 0, 0.1),
+            0 0 0 rgba(56, 189, 248, 0); 
+    }
+    100% { 
+        box-shadow: 
+            0 4px 12px rgba(0, 0, 0, 0.1),
+            0 0 15px rgba(56, 189, 248, 0.3); 
+    }
+}
+
+.container-fluid {
+    width: 100%;
+    padding: 0 24px;
+    margin: 0 auto;
+    max-width: 1400px;
+    position: relative;
+    z-index: 1;
+}
+
+.top-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    margin: 4px 0;
+    position: relative;
+    padding: 0 16px;
+}
+
+.contact-info:first-child {
+    padding-left: 0;
+}
+
+.contact-info:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 16px;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.contact-info i {
+    color: var(--icon-color);
+    margin-right: 8px;
+    font-size: 16px;
+    transition: transform var(--animation-speed) ease;
+    text-shadow: 0 0 5px var(--glow-color);
+}
+
+.contact-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    transition: all var(--animation-speed) ease;
+    position: relative;
+    padding: 4px 0;
+}
+
+.contact-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent-color);
+    box-shadow: 0 0 5px var(--glow-color);
+    transition: width var(--animation-speed) ease;
+}
+
+.contact-info:hover i {
+    transform: translateY(-2px);
+    text-shadow: 0 0 10px var(--glow-color);
+}
+
+.contact-info:hover .contact-link {
+    color: var(--accent-color);
+    text-shadow: 0 0 5px var(--glow-color);
+}
+
+.contact-info:hover .contact-link::after {
+    width: 100%;
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.9; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .top-bar-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .contact-info {
+        padding: 6px 0;
+    }
+    
+    .contact-info:not(:last-child)::after {
+        display: none;
+    }
+}
